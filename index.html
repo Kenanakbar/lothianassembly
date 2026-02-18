@@ -1,112 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lothian Assembly | Furniture Assembly & Home Repairs Edinburgh</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        header {
-            background-color: #1f2937;
-            color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-        header p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-        section {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        .services {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-        .services p {
-            margin: 0;
-            font-size: 18px;
-        }
-        .contact {
-            background-color: #1f2937;
-            color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .contact h2 {
-            margin-top: 0;
-        }
-        .contact a {
-            text-decoration: none;
-        }
-        .call-button {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 16px;
-            background-color: #3b82f6;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            color: #777;
-        }
-        @media (min-width: 600px) {
-            .services {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lothian Assembly | Furniture Assembly & Home Repairs Edinburgh</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome for Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        background-color: #f4f4f9;
+        color: #1f2937;
+    }
+
+    header {
+        background-color: #1f2937;
+        color: #fff;
+        text-align: center;
+        padding: 60px 20px;
+    }
+    header h1 { font-size: 42px; margin:0; }
+    header p { font-size:18px; margin-top:10px; }
+
+    section { padding:50px 20px; max-width:1000px; margin:auto; }
+
+    .services {
+        display: grid;
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+    .service-card {
+        background:#fff;
+        padding:25px;
+        border-radius:10px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.05);
+        text-align:left;
+        font-size:18px;
+    }
+    .service-card i {
+        color: #3b82f6;
+        margin-right:10px;
+    }
+
+    .contact {
+        background-color:#1f2937;
+        color:#fff;
+        text-align:center;
+        padding:50px 20px;
+        border-radius:10px;
+    }
+    .contact h2 { margin-top:0; }
+    .contact a { text-decoration:none; }
+    .call-button, .whatsapp-button {
+        display:inline-block;
+        margin:10px;
+        padding:15px 30px;
+        font-size:16px;
+        background-color:#3b82f6;
+        color:#fff;
+        border:none;
+        border-radius:5px;
+        cursor:pointer;
+        transition:0.3s;
+    }
+    .call-button:hover, .whatsapp-button:hover { background-color:#2563EB; }
+
+    .quote-form {
+        background:#fff;
+        padding:30px;
+        border-radius:10px;
+        max-width:500px;
+        margin:20px auto 0 auto;
+        box-shadow:0 4px 12px rgba(0,0,0,0.05);
+        text-align:left;
+    }
+    .quote-form input, .quote-form textarea, .quote-form button {
+        width:100%;
+        padding:12px;
+        margin-bottom:15px;
+        border-radius:5px;
+        border:1px solid #ccc;
+        font-size:16px;
+    }
+    .quote-form button {
+        background-color:#3b82f6;
+        color:#fff;
+        border:none;
+        cursor:pointer;
+        transition:0.3s;
+    }
+    .quote-form button:hover { background-color:#2563EB; }
+
+    footer {
+        text-align:center;
+        padding:20px;
+        font-size:14px;
+        color:#777;
+    }
+
+    @media (min-width:600px) { .services { grid-template-columns:1fr 1fr; } }
+</style>
 </head>
 <body>
 
+<!-- Header -->
 <header>
     <h1>Lothian Assembly</h1>
     <p>Furniture Assembly & Minor Home Repairs in Edinburgh</p>
 </header>
 
+<!-- Services -->
 <section>
-    <h2>Our Services</h2>
+    <h2 style="text-align:center; margin-bottom:30px;">Our Services</h2>
     <div class="services">
-        <p>✔ IKEA & Flat Pack Assembly</p>
-        <p>✔ TV Wall Mounting</p>
-        <p>✔ Shelving & Curtain Rails</p>
-        <p>✔ Minor Home Repairs</p>
-        <p>✔ Same Day Availability</p>
+        <div class="service-card"><i class="fas fa-couch"></i> IKEA & Flat Pack Assembly</div>
+        <div class="service-card"><i class="fas fa-tv"></i> TV Wall Mounting</div>
+        <div class="service-card"><i class="fas fa-tools"></i> Shelving & Curtain Rails</div>
+        <div class="service-card"><i class="fas fa-wrench"></i> Minor Home Repairs</div>
+        <div class="service-card"><i class="fas fa-clock"></i> Same Day Availability</div>
     </div>
 </section>
 
+<!-- Contact -->
 <section class="contact">
     <h2>Contact Us</h2>
     <p>📞 07716632602</p>
     <p>📧 info@lothianassembly.co.uk</p>
-    
-    <a href="tel:07716632602">
-        <button class="call-button">Call Now</button>
-    </a>
-    
-    <a href="https://wa.me/447716632602" target="_blank">
-        <button class="whatsapp-button">WhatsApp</button>
-    </a>
+    <a href="tel:07716632602"><button class="call-button">Call Now</button></a>
+    <a href="https://wa.me/447716632602" target="_blank"><button class="whatsapp-button">WhatsApp</button></a>
+
+    <!-- Get a Quote Form -->
+    <div class="quote-form">
+        <h3>Get a Quote</h3>
+        <form action="https://formspree.io/f/mgedrglq" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="service" placeholder="Service Needed" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <p style="font-size:14px; color:#555;">You will receive a reply shortly after submission.</p>
+    </div>
 </section>
+
+<footer>
+    &copy; 2026 Lothian Assembly | Edinburgh
+</footer>
+
+</body>
+</html>
