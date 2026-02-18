@@ -1,0 +1,81 @@
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lothian Assembly | Furniture Assembly & Home Repairs Edinburgh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 40px 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        section {
+            padding: 40px 20px;
+        }
+        .services {
+            background: white;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .contact {
+            background: #1f2937;
+            color: white;
+            padding: 40px 20px;
+        }
+        a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        button {
+            padding: 15px 25px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Lothian Assembly</h1>
+    <p>Furniture Assembly & Minor Home Repairs in Edinburgh</p>
+</header>
+
+<section>
+    <h2>Our Services</h2>
+    <div class="services">
+        <p>✔ IKEA & Flat Pack Assembly</p>
+        <p>✔ TV Wall Mounting</p>
+        <p>✔ Shelving & Curtain Rails</p>
+        <p>✔ Minor Home Repairs</p>
+        <p>✔ Same Day Availability</p>
+    </div>
+</section>
+
+<section class="contact">
+    <h2>Contact Us</h2>
+    <p>📞 07716632602</p>
+    <p>📧 info@lothianassembly.co.uk</p>
+    <br>
+    <a href="tel:07716632602">
+        <button>Call Now</button>
+    </a>
+</section>
+
+</body>
+</html>
