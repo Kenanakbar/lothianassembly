@@ -5,233 +5,673 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flat Pack & Furniture Assembly Edinburgh | Lothian Assembly</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-body { line-height:1.6; color:#1F2937; background:#f9f9f9; }
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Poppins', sans-serif; color:#1F2937; background:#fff; line-height:1.6; }
 a { text-decoration:none; color:inherit; }
 ul { list-style:none; }
+img { display:block; max-width:100%; }
 
+/* ── TOKENS ── */
+:root {
+  --green:   #22c55e;
+  --green-d: #16a34a;
+  --dark:    #111827;
+  --mid:     #374151;
+  --light:   #F9FAFB;
+  --border:  #E5E7EB;
+  --radius:  10px;
+  --shadow:  0 4px 24px rgba(0,0,0,0.08);
+}
+
+/* ══════════════════════════
+   HEADER / NAV
+══════════════════════════ */
 header {
-  background:#1F2937;
-  color:#fff;
-  padding:20px 10%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--dark);
+  padding: 0 6%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 
-.logo { font-size:1.8em; font-weight:600; }
-
-nav ul { display:flex; gap:20px; }
-
-nav ul li a { color:#fff; font-weight:500; }
-
-.cta-buttons { display:flex; gap:10px; }
-
-.cta-buttons a {
-  background:#25D366;
-  color:#fff;
-  padding:10px 15px;
-  border-radius:6px;
-  font-weight:600;
+.logo {
+  font-size: 1.35em;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
 }
+.logo span { color: var(--green); }
 
+/* desktop nav links */
+nav ul {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+nav ul li a {
+  color: #D1D5DB;
+  font-size: 0.9em;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+nav ul li a:hover { background: rgba(255,255,255,0.08); color:#fff; }
+
+/* CTA buttons in header */
+.header-cta { display:flex; gap:8px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 7px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.88em;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn:hover { opacity:0.88; transform:translateY(-1px); }
+.btn-green  { background: var(--green); color: #fff; }
+.btn-outline { background: transparent; border: 1.5px solid #4B5563; color:#D1D5DB; }
+.btn-outline:hover { border-color:#9CA3AF; color:#fff; }
+
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE MENU ── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px; left: 0; right: 0;
+  background: var(--dark);
+  padding: 20px 6% 28px;
+  z-index: 999;
+  border-top: 1px solid #1F2937;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.mobile-menu.open { display: block; }
+.mobile-menu ul { display: flex; flex-direction: column; gap: 4px; margin-bottom:16px; }
+.mobile-menu ul li a {
+  display: block;
+  color: #D1D5DB;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: 7px;
+  transition: background 0.2s;
+}
+.mobile-menu ul li a:hover { background: rgba(255,255,255,0.07); color:#fff; }
+.mobile-menu .mobile-cta { display:flex; flex-direction:column; gap:8px; }
+.mobile-menu .btn { justify-content:center; padding:12px; font-size:0.95em; }
+
+/* ══════════════════════════
+   HERO
+══════════════════════════ */
 .hero {
-  background:url('https://images.unsplash.com/photo-1582582429416-5b47d4c3f6d0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-  height:85vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:#fff;
-  position:relative;
+  margin-top: 68px;
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url('images/hero.jpg') center/cover no-repeat;
+  background-color: var(--dark);
 }
-
 .hero::after {
-  content:"";
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,0.6);
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.65) 100%);
 }
-
 .hero-content {
-  position:relative;
-  z-index:1;
-  max-width:800px;
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  padding: 40px 20px;
 }
-
-.hero h1 { font-size:2.8em; margin-bottom:20px; }
-.hero p { font-size:1.2em; margin-bottom:30px; }
-
-.section {
-  padding:80px 10%;
-  text-align:center;
+.hero-badge {
+  display: inline-block;
+  background: rgba(34,197,94,0.18);
+  border: 1px solid rgba(34,197,94,0.45);
+  color: #86efac;
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 22px;
 }
-
-.section h2 {
-  font-size:2.2em;
-  margin-bottom:40px;
-  color:#1F2937;
+.hero h1 {
+  font-size: clamp(2em, 5vw, 3.2em);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 18px;
 }
+.hero h1 span { color: var(--green); }
+.hero p {
+  font-size: clamp(1em, 2vw, 1.18em);
+  color: #D1D5DB;
+  margin-bottom: 36px;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.hero-btns .btn { padding: 13px 26px; font-size: 0.95em; }
 
+/* ══════════════════════════
+   WHY CHOOSE
+══════════════════════════ */
+.why {
+  background: var(--light);
+  padding: 70px 6%;
+  text-align: center;
+}
+.section-label {
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-d);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-size: clamp(1.6em, 3vw, 2.2em);
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 40px;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.why-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px 20px;
+}
+.why-item i { font-size:1.8em; color:var(--green); margin-bottom:12px; }
+.why-item h4 { font-size:0.95em; font-weight:600; color:var(--dark); }
+
+/* ══════════════════════════
+   SERVICES
+══════════════════════════ */
+.services {
+  padding: 80px 6%;
+  text-align: center;
+  background: #fff;
+}
 .cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 26px;
+  margin-top: 10px;
 }
-
 .card {
-  background:#fff;
-  padding:30px;
-  border-radius:10px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.1);
-  transition:0.3s;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-align: left;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-
-.card:hover { transform:translateY(-5px); }
-
-.card i {
-  font-size:2.5em;
-  color:#25D366;
-  margin-bottom:20px;
+.card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.13); }
+.card-photo-wrap {
+  width: 100%;
+  height: 200px;
+  background: #E5E7EB;
+  overflow: hidden;
 }
+.card-photo-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
+.card:hover .card-photo-wrap img { transform:scale(1.04); }
+.card-body { padding: 24px; }
+.card-body i { font-size:1.6em; color:var(--green); margin-bottom:12px; }
+.card-body h3 { font-size:1.05em; font-weight:700; margin-bottom:8px; color:var(--dark); }
+.card-body p { font-size:0.9em; color:#6B7280; line-height:1.6; }
 
-.why p {
-  margin-bottom:15px;
+/* ══════════════════════════
+   GALLERY
+══════════════════════════ */
+.gallery {
+  padding: 80px 6%;
+  text-align: center;
+  background: var(--light);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.gallery-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.gallery-grid img:hover { transform:scale(1.03); opacity:0.9; }
+
+/* ══════════════════════════
+   CONTACT / FORM
+══════════════════════════ */
+.contact-section {
+  padding: 80px 6%;
+  background: var(--dark);
+}
+.contact-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.contact-info { color: #D1D5DB; }
+.contact-info .section-label { color: #86efac; }
+.contact-info .section-title { color: #fff; margin-bottom:16px; text-align:left; }
+.contact-info p { font-size:0.95em; color:#9CA3AF; margin-bottom:30px; }
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  font-size: 0.95em;
+  color: #D1D5DB;
+}
+.contact-detail .icon {
+  width: 42px; height: 42px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  display: flex; align-items:center; justify-content:center;
   font-size:1.1em;
+  color: var(--green);
+  flex-shrink: 0;
 }
 
-.contact {
-  background:#1F2937;
-  color:#fff;
+/* Form card */
+.form-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 36px 32px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25);
 }
-
-.contact form {
-  max-width:500px;
-  margin:20px auto;
+.form-card h3 {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 22px;
 }
-
-.contact input,
-.contact textarea,
-.contact select {
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border-radius:6px;
-  border:none;
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.form-group { display:flex; flex-direction:column; margin-bottom:14px; }
+.form-group label {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 5px;
+  letter-spacing: 0.02em;
 }
-
-.contact button {
-  background:#25D366;
-  color:#fff;
-  padding:12px;
-  border:none;
-  border-radius:6px;
-  font-weight:600;
-  cursor:pointer;
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9em;
+  color: var(--dark);
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
 }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+}
+.form-group textarea { resize:vertical; min-height:100px; }
+.form-submit {
+  width: 100%;
+  padding: 13px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 4px;
+}
+.form-submit:hover { background: var(--green-d); transform:translateY(-1px); }
 
+/* ══════════════════════════
+   FOOTER
+══════════════════════════ */
 footer {
-  background:#111827;
-  color:#fff;
-  text-align:center;
-  padding:20px;
-  font-size:0.9em;
+  background: #0a0f1a;
+  color: #6B7280;
+  text-align: center;
+  padding: 22px 6%;
+  font-size: 0.85em;
+}
+footer a { color: var(--green); }
+footer a:hover { text-decoration: underline; }
+
+/* ══════════════════════════
+   RESPONSIVE
+══════════════════════════ */
+@media (max-width: 768px) {
+  nav, .header-cta { display: none; }
+  .hamburger { display: flex; }
+
+  .contact-inner { grid-template-columns: 1fr; gap: 36px; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-card { padding: 26px 20px; }
+  .contact-info .section-title { text-align: center; }
+  .contact-info p { text-align: center; }
+  .contact-detail { justify-content: center; }
+
+  .hero-btns .btn { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  header { padding: 0 4%; }
 }
 </style>
 </head>
-
 <body>
 
+<!-- ═══════ HEADER ═══════ -->
 <header>
-  <div class="logo">Lothian Assembly</div>
+  <div class="logo">Lothian<span>Assembly</span></div>
+
   <nav>
     <ul>
+      <li><a href="#why">Why Us</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-  <div class="cta-buttons">
-    <a href="tel:07716632602"><i class="fas fa-phone"></i> Call</a>
-    <a href="https://wa.me/447716632602"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+  <div class="header-cta">
+    <a href="tel:07716632602" class="btn btn-outline"><i class="fas fa-phone"></i> Call</a>
+    <a href="https://wa.me/447716632602" class="btn btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
+<!-- ═══════ MOBILE MENU ═══════ -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#why"      class="nav-link">Why Us</a></li>
+    <li><a href="#services" class="nav-link">Services</a></li>
+    <li><a href="#gallery"  class="nav-link">Gallery</a></li>
+    <li><a href="#contact"  class="nav-link">Contact</a></li>
+  </ul>
+  <div class="mobile-cta">
+    <a href="tel:07716632602"           class="btn btn-outline"><i class="fas fa-phone"></i> Call Now</a>
+    <a href="https://wa.me/447716632602" class="btn btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+  </div>
+</div>
+
+<!-- ═══════ HERO ═══════ -->
 <section class="hero">
   <div class="hero-content">
-    <h1>Professional Flat Pack & Furniture Assembly in Edinburgh</h1>
-    <p>IKEA wardrobes, beds, desks & shelving. Bathroom & kitchen silicone resealing. Reliable service across Edinburgh & The Lothians.</p>
-    <div class="cta-buttons">
-      <a href="tel:07716632602"><i class="fas fa-phone"></i> Call Now</a>
-      <a href="https://wa.me/447716632602"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <div class="hero-badge">Edinburgh & The Lothians</div>
+    <h1>Furniture Assembly<br><span>Done Right.</span></h1>
+    <p>Flat pack builds, IKEA wardrobes, silicone resealing and handyman jobs — fast, reliable and priced fairly.</p>
+    <div class="hero-btns">
+      <a href="#contact"                class="btn btn-green"><i class="fas fa-envelope"></i> Get a Free Quote</a>
+      <a href="https://wa.me/447716632602" class="btn btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
   </div>
 </section>
 
-<section class="section why">
-  <h2>Why Choose Lothian Assembly?</h2>
-  <p>✔ Reliable & Punctual</p>
-  <p>✔ Affordable & Transparent Pricing</p>
-  <p>✔ Experienced with IKEA & Major Brands</p>
-  <p>✔ Local Edinburgh Service</p>
+<!-- ═══════ WHY CHOOSE ═══════ -->
+<section class="why" id="why">
+  <p class="section-label">Why choose us</p>
+  <h2 class="section-title">The Lothian Assembly difference</h2>
+  <div class="why-grid">
+    <div class="why-item">
+      <i class="fas fa-clock"></i>
+      <h4>Reliable & On Time</h4>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-pound-sign"></i>
+      <h4>Transparent Pricing</h4>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-star"></i>
+      <h4>IKEA Specialists</h4>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-map-marker-alt"></i>
+      <h4>Local Edinburgh Service</h4>
+    </div>
+  </div>
 </section>
 
-<section class="section" id="services">
-  <h2>Our Services</h2>
+<!-- ═══════ SERVICES ═══════ -->
+<section class="services" id="services">
+  <p class="section-label">What we do</p>
+  <h2 class="section-title">Our Services</h2>
   <div class="cards">
+
     <div class="card">
-      <i class="fas fa-couch"></i>
-      <h3>Flat Pack Furniture Assembly</h3>
-      <p>Professional assembly of wardrobes, beds, desks, office furniture, TV units and shelving.</p>
+      <div class="card-photo-wrap">
+        <img src="images/service-flatpack.jpg" alt="Flat Pack Assembly" onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <i class="fas fa-couch"></i>
+        <h3>Flat Pack Furniture Assembly</h3>
+        <p>Wardrobes, beds, desks, office furniture, TV units and shelving — all major brands assembled professionally.</p>
+      </div>
     </div>
 
     <div class="card">
-      <i class="fas fa-bath"></i>
-      <h3>Bathroom & Kitchen Silicone Resealing</h3>
-      <p>Remove mouldy sealant and replace with a clean, professional finish for baths, showers and worktops.</p>
+      <div class="card-photo-wrap">
+        <img src="images/service-silicone.jpg" alt="Silicone Resealing" onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <i class="fas fa-bath"></i>
+        <h3>Silicone Resealing</h3>
+        <p>Mouldy sealant removed and replaced with a clean, professional finish on baths, showers and worktops.</p>
+      </div>
     </div>
 
     <div class="card">
-      <i class="fas fa-tools"></i>
-      <h3>Handyman & Property Maintenance</h3>
-      <p>Shelving installation, minor repairs and small home improvement jobs across Edinburgh.</p>
+      <div class="card-photo-wrap">
+        <img src="images/service-handyman.jpg" alt="Handyman Services" onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <i class="fas fa-tools"></i>
+        <h3>Handyman & Maintenance</h3>
+        <p>Shelving installation, minor repairs and small home improvement jobs across Edinburgh.</p>
+      </div>
     </div>
+
   </div>
 </section>
 
-<section class="section contact" id="contact">
-  <h2>Get a Free Quote</h2>
-  <p>Send us a message and we’ll respond quickly.</p>
-
-  <!-- NEW FORMSPREE FORM -->
-  <form action="https://formspree.io/f/mnjglrob"method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <input type="email" name="email" placeholder="Email Address" required>
-    
-    <select name="service">
-      <option>Flat Pack Assembly</option>
-      <option>Silicone Resealing</option>
-      <option>Handyman Work</option>
-    </select>
-
-    <textarea name="message" placeholder="Tell us about the job"></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-
-  <p style="margin-top:20px;">📞 07716 632602</p>
-  <p>📍 Serving Edinburgh & The Lothians</p>
+<!-- ═══════ GALLERY ═══════ -->
+<section class="gallery" id="gallery">
+  <p class="section-label">Portfolio</p>
+  <h2 class="section-title">Our Work</h2>
+  <div class="gallery-grid">
+    <img src="images/gallery1.jpg" alt="Completed job 1">
+    <img src="images/gallery2.jpg" alt="Completed job 2">
+    <img src="images/gallery3.jpg" alt="Completed job 3">
+    <img src="images/gallery4.jpg" alt="Completed job 4">
+    <img src="images/gallery5.jpg" alt="Completed job 5">
+    <img src="images/gallery6.jpg" alt="Completed job 6">
+  </div>
 </section>
 
+<!-- ═══════ CONTACT ═══════ -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+
+    <div class="contact-info">
+      <p class="section-label">Get in touch</p>
+      <h2 class="section-title">Let's get your job booked</h2>
+      <p>Fill in the form and we'll get back to you quickly with a price. No obligation.</p>
+
+      <div class="contact-detail">
+        <div class="icon"><i class="fas fa-phone"></i></div>
+        <div>
+          <strong style="color:#fff;display:block;">Call us</strong>
+          07716 632602
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon"><i class="fab fa-whatsapp"></i></div>
+        <div>
+          <strong style="color:#fff;display:block;">WhatsApp</strong>
+          <a href="https://wa.me/447716632602" style="color:#86efac;">Message us directly</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <strong style="color:#fff;display:block;">Email</strong>
+          <a href="mailto:Lothian.assembly@hotmail.com" style="color:#86efac;">Lothian.assembly@hotmail.com</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <strong style="color:#fff;display:block;">Area</strong>
+          Edinburgh & The Lothians
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Get a Free Quote</h3>
+      <form action="https://formspree.io/f/mnjglrob" method="POST">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Smith" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="07700 000000" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Service Needed</label>
+          <select id="service" name="service">
+            <option value="">— Select a service —</option>
+            <option>Flat Pack Assembly</option>
+            <option>Silicone Resealing</option>
+            <option>Handyman Work</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell us about the job</label>
+          <textarea id="message" name="message" placeholder="e.g. IKEA PAX wardrobe, 2 doors — Edinburgh EH3"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
 <footer>
-  &copy; 2026 Lothian Assembly |
-  <a href="mailto:Lothian.assembly@hotmail.com" style="color:#25D366;">Lothian.assembly@hotmail.com</a>
+  &copy; 2026 Lothian Assembly &nbsp;|&nbsp;
+  <a href="mailto:Lothian.assembly@hotmail.com">Lothian.assembly@hotmail.com</a>
 </footer>
+
+<!-- ═══════ JS — HAMBURGER + NAV CLOSE ═══════ -->
+<script>
+  const hamburger   = document.getElementById('hamburger');
+  const mobileMenu  = document.getElementById('mobileMenu');
+  const navLinks    = document.querySelectorAll('.nav-link');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  // close menu when any nav link is tapped
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  });
+</script>
 
 </body>
 </html>
