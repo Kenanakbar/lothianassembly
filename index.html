@@ -4,508 +4,453 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flat Pack & Furniture Assembly Edinburgh | Lothian Assembly</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
-/* ── RESET & BASE ── */
+/* ── RESET ── */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
-body { font-family:'Poppins', sans-serif; color:#1F2937; background:#fff; line-height:1.6; }
+body { font-family:'Poppins',sans-serif; color:#1F2937; background:#fff; line-height:1.6; }
 a { text-decoration:none; color:inherit; }
 ul { list-style:none; }
 img { display:block; max-width:100%; }
 
 /* ── TOKENS ── */
 :root {
-  --green:   #22c55e;
-  --green-d: #16a34a;
-  --dark:    #111827;
-  --mid:     #374151;
-  --light:   #F9FAFB;
-  --border:  #E5E7EB;
-  --radius:  10px;
-  --shadow:  0 4px 24px rgba(0,0,0,0.08);
+  --green:#22c55e; --green-d:#16a34a;
+  --dark:#111827; --mid:#374151;
+  --light:#F9FAFB; --border:#E5E7EB;
+  --radius:10px; --shadow:0 4px 24px rgba(0,0,0,0.08);
 }
 
-/* ══════════════════════════
-   HEADER / NAV
-══════════════════════════ */
+/* ══ SCROLL ANIMATIONS ══ */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left  { opacity:0; transform:translateX(-40px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal-right { opacity:0; transform:translateX(40px);  transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal-left.visible, .reveal-right.visible { opacity:1; transform:translateX(0); }
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* ══ HEADER ══ */
 header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: var(--dark);
-  padding: 0 6%;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  background:var(--dark); padding:0 6%; height:68px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:0 2px 12px rgba(0,0,0,0.3);
+  transition: background 0.3s;
 }
-
-.logo {
-  font-size: 1.35em;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.3px;
-}
-.logo span { color: var(--green); }
-
-/* desktop nav links */
-nav ul {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
+.logo { font-size:1.35em; font-weight:700; color:#fff; letter-spacing:-0.3px; }
+.logo span { color:var(--green); }
+nav ul { display:flex; gap:8px; align-items:center; }
 nav ul li a {
-  color: #D1D5DB;
-  font-size: 0.9em;
-  font-weight: 500;
-  padding: 6px 14px;
-  border-radius: 6px;
-  transition: background 0.2s, color 0.2s;
+  color:#D1D5DB; font-size:0.9em; font-weight:500;
+  padding:6px 14px; border-radius:6px;
+  transition:background 0.2s, color 0.2s;
 }
-nav ul li a:hover { background: rgba(255,255,255,0.08); color:#fff; }
-
-/* CTA buttons in header */
+nav ul li a:hover { background:rgba(255,255,255,0.08); color:#fff; }
 .header-cta { display:flex; gap:8px; }
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 18px;
-  border-radius: 7px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.88em;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: opacity 0.2s, transform 0.15s;
+  display:inline-flex; align-items:center; gap:6px;
+  padding:9px 18px; border-radius:7px;
+  font-family:'Poppins',sans-serif; font-size:0.88em; font-weight:600;
+  cursor:pointer; border:none;
+  transition:opacity 0.2s, transform 0.15s;
 }
 .btn:hover { opacity:0.88; transform:translateY(-1px); }
-.btn-green  { background: var(--green); color: #fff; }
-.btn-outline { background: transparent; border: 1.5px solid #4B5563; color:#D1D5DB; }
+.btn-green  { background:var(--green); color:#fff; }
+.btn-outline { background:transparent; border:1.5px solid #4B5563; color:#D1D5DB; }
 .btn-outline:hover { border-color:#9CA3AF; color:#fff; }
 
 /* ── HAMBURGER ── */
 .hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  padding: 4px;
-  background: none;
-  border: none;
+  display:none; flex-direction:column; gap:5px;
+  cursor:pointer; padding:4px; background:none; border:none;
 }
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: #fff;
-  border-radius: 2px;
-  transition: all 0.3s;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.hamburger span { display:block; width:24px; height:2px; background:#fff; border-radius:2px; transition:all 0.3s; }
+.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
 /* ── MOBILE MENU ── */
 .mobile-menu {
-  display: none;
-  position: fixed;
-  top: 68px; left: 0; right: 0;
-  background: var(--dark);
-  padding: 20px 6% 28px;
-  z-index: 999;
-  border-top: 1px solid #1F2937;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  display:none; position:fixed; top:68px; left:0; right:0;
+  background:var(--dark); padding:20px 6% 28px;
+  z-index:999; box-shadow:0 8px 24px rgba(0,0,0,0.3);
 }
-.mobile-menu.open { display: block; }
-.mobile-menu ul { display: flex; flex-direction: column; gap: 4px; margin-bottom:16px; }
+.mobile-menu.open { display:block; }
+.mobile-menu ul { display:flex; flex-direction:column; gap:4px; margin-bottom:16px; }
 .mobile-menu ul li a {
-  display: block;
-  color: #D1D5DB;
-  font-size: 1em;
-  font-weight: 500;
-  padding: 10px 14px;
-  border-radius: 7px;
-  transition: background 0.2s;
+  display:block; color:#D1D5DB; font-size:1em; font-weight:500;
+  padding:10px 14px; border-radius:7px; transition:background 0.2s;
 }
-.mobile-menu ul li a:hover { background: rgba(255,255,255,0.07); color:#fff; }
+.mobile-menu ul li a:hover { background:rgba(255,255,255,0.07); color:#fff; }
 .mobile-menu .mobile-cta { display:flex; flex-direction:column; gap:8px; }
 .mobile-menu .btn { justify-content:center; padding:12px; font-size:0.95em; }
 
-/* ══════════════════════════
-   HERO
-══════════════════════════ */
+/* ══ HERO ══ */
 .hero {
-  margin-top: 68px;
-  position: relative;
-  min-height: 88vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: url('images/hero.jpg') center/cover no-repeat;
-  background-color: var(--dark);
+  margin-top:68px; position:relative; min-height:88vh;
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  background:url('images/hero.jpg') center/cover no-repeat;
+  background-color:var(--dark);
 }
 .hero::after {
-  content:'';
-  position:absolute; inset:0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.65) 100%);
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.55),rgba(0,0,0,0.65));
 }
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 760px;
-  padding: 40px 20px;
-}
+.hero-content { position:relative; z-index:1; max-width:760px; padding:40px 20px; }
 .hero-badge {
-  display: inline-block;
-  background: rgba(34,197,94,0.18);
-  border: 1px solid rgba(34,197,94,0.45);
-  color: #86efac;
-  font-size: 0.78em;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 20px;
-  margin-bottom: 22px;
+  display:inline-block;
+  background:rgba(34,197,94,0.18); border:1px solid rgba(34,197,94,0.45);
+  color:#86efac; font-size:0.78em; font-weight:600;
+  letter-spacing:0.06em; text-transform:uppercase;
+  padding:5px 14px; border-radius:20px; margin-bottom:22px;
+  animation: fadeDown 0.8s ease both;
 }
 .hero h1 {
-  font-size: clamp(2em, 5vw, 3.2em);
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 18px;
+  font-size:clamp(2em,5vw,3.2em); font-weight:700; color:#fff;
+  line-height:1.2; margin-bottom:18px;
+  animation: fadeDown 0.8s ease 0.15s both;
 }
-.hero h1 span { color: var(--green); }
+.hero h1 span { color:var(--green); }
 .hero p {
-  font-size: clamp(1em, 2vw, 1.18em);
-  color: #D1D5DB;
-  margin-bottom: 36px;
-  max-width: 580px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size:clamp(1em,2vw,1.18em); color:#D1D5DB;
+  margin-bottom:36px; max-width:580px; margin-left:auto; margin-right:auto;
+  animation: fadeDown 0.8s ease 0.3s both;
 }
-.hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-.hero-btns .btn { padding: 13px 26px; font-size: 0.95em; }
+.hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; animation: fadeDown 0.8s ease 0.45s both; }
+.hero-btns .btn { padding:13px 26px; font-size:0.95em; }
 
-/* ══════════════════════════
-   WHY CHOOSE
-══════════════════════════ */
-.why {
-  background: var(--light);
-  padding: 70px 6%;
-  text-align: center;
+@keyframes fadeDown {
+  from { opacity:0; transform:translateY(-20px); }
+  to   { opacity:1; transform:translateY(0); }
 }
+
+/* ══ SECTION SHARED ══ */
 .section-label {
-  font-size: 0.75em;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--green-d);
-  margin-bottom: 10px;
+  font-size:0.75em; font-weight:600; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--green-d); margin-bottom:10px;
 }
 .section-title {
-  font-size: clamp(1.6em, 3vw, 2.2em);
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 40px;
+  font-size:clamp(1.6em,3vw,2.2em); font-weight:700;
+  color:var(--dark); margin-bottom:40px;
 }
+
+/* ══ WHY CHOOSE ══ */
+.why { background:var(--light); padding:80px 6%; text-align:center; }
 .why-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  max-width: 860px;
-  margin: 0 auto;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px; max-width:860px; margin:0 auto;
 }
 .why-item {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 26px 20px;
+  background:#fff; border:1px solid var(--border);
+  border-radius:var(--radius); padding:26px 20px;
+  transition:transform 0.25s, box-shadow 0.25s;
 }
-.why-item i { font-size:1.8em; color:var(--green); margin-bottom:12px; }
+.why-item:hover { transform:translateY(-4px); box-shadow:var(--shadow); }
+.why-item i { font-size:1.8em; color:var(--green); margin-bottom:12px; display:block; }
 .why-item h4 { font-size:0.95em; font-weight:600; color:var(--dark); }
 
-/* ══════════════════════════
-   SERVICES
-══════════════════════════ */
-.services {
-  padding: 80px 6%;
-  text-align: center;
-  background: #fff;
+/* ══ ABOUT US ══ */
+.about { padding:90px 6%; background:#fff; }
+.about-inner {
+  max-width:1000px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;
 }
+.about-image-wrap {
+  position:relative; border-radius:14px; overflow:hidden;
+  box-shadow:0 16px 48px rgba(0,0,0,0.14);
+}
+.about-image-wrap img { width:100%; height:420px; object-fit:cover; display:block; }
+.about-image-wrap::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(34,197,94,0.15),transparent);
+  z-index:1;
+}
+.about-badge {
+  position:absolute; bottom:20px; left:20px; z-index:2;
+  background:var(--green); color:#fff;
+  padding:10px 18px; border-radius:8px;
+  font-size:0.85em; font-weight:700;
+}
+.about-text .section-title { margin-bottom:16px; text-align:left; }
+.about-text p { color:#4B5563; font-size:0.95em; margin-bottom:16px; line-height:1.8; }
+.about-stats {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:30px;
+}
+.stat {
+  background:var(--light); border-radius:10px; padding:18px;
+  border-left:3px solid var(--green);
+}
+.stat-num { font-size:1.8em; font-weight:700; color:var(--dark); line-height:1; }
+.stat-label { font-size:0.8em; color:#6B7280; margin-top:4px; }
+
+/* ══ SERVICES ══ */
+.services { padding:80px 6%; text-align:center; background:var(--light); }
 .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 26px;
-  margin-top: 10px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:26px; margin-top:10px;
 }
 .card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  text-align: left;
-  box-shadow: var(--shadow);
-  transition: transform 0.25s, box-shadow 0.25s;
+  background:#fff; border:1px solid var(--border);
+  border-radius:var(--radius); overflow:hidden; text-align:left;
+  box-shadow:var(--shadow); transition:transform 0.25s, box-shadow 0.25s;
 }
-.card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.13); }
-.card-photo-wrap {
-  width: 100%;
-  height: 200px;
-  background: #E5E7EB;
-  overflow: hidden;
-}
+.card:hover { transform:translateY(-5px); box-shadow:0 12px 36px rgba(0,0,0,0.13); }
+.card-photo-wrap { width:100%; height:200px; background:#E5E7EB; overflow:hidden; }
 .card-photo-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
-.card:hover .card-photo-wrap img { transform:scale(1.04); }
-.card-body { padding: 24px; }
-.card-body i { font-size:1.6em; color:var(--green); margin-bottom:12px; }
+.card:hover .card-photo-wrap img { transform:scale(1.05); }
+.card-body { padding:24px; }
+.card-body i { font-size:1.6em; color:var(--green); margin-bottom:12px; display:block; }
 .card-body h3 { font-size:1.05em; font-weight:700; margin-bottom:8px; color:var(--dark); }
 .card-body p { font-size:0.9em; color:#6B7280; line-height:1.6; }
 
-/* ══════════════════════════
-   GALLERY
-══════════════════════════ */
-.gallery {
-  padding: 80px 6%;
-  text-align: center;
-  background: var(--light);
-}
+/* ══ GALLERY ══ */
+.gallery { padding:80px 6%; text-align:center; background:#fff; }
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;
 }
 .gallery-grid img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s, opacity 0.3s;
+  width:100%; height:220px; object-fit:cover; border-radius:8px;
+  transition:transform 0.3s, opacity 0.3s;
 }
-.gallery-grid img:hover { transform:scale(1.03); opacity:0.9; }
+.gallery-grid img:hover { transform:scale(1.04); opacity:0.88; }
 
-/* ══════════════════════════
-   CONTACT / FORM
-══════════════════════════ */
-.contact-section {
-  padding: 80px 6%;
-  background: var(--dark);
+/* ══ FAQ ══ */
+.faq { padding:90px 6%; background:var(--light); }
+.faq-inner { max-width:760px; margin:0 auto; text-align:center; }
+.faq-inner .section-title { margin-bottom:36px; }
+.faq-list { text-align:left; display:flex; flex-direction:column; gap:12px; }
+.faq-item {
+  background:#fff; border:1px solid var(--border);
+  border-radius:var(--radius); overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s;
 }
+.faq-item.open { box-shadow:0 6px 20px rgba(0,0,0,0.09); }
+.faq-q {
+  width:100%; background:none; border:none; cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 22px; font-family:'Poppins',sans-serif;
+  font-size:0.95em; font-weight:600; color:var(--dark); text-align:left;
+  transition:color 0.2s;
+}
+.faq-item.open .faq-q { color:var(--green-d); }
+.faq-q .icon {
+  width:28px; height:28px; border-radius:50%;
+  background:var(--light); border:1.5px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:background 0.2s, transform 0.3s;
+  font-size:0.75em; color:var(--mid);
+}
+.faq-item.open .faq-q .icon {
+  background:var(--green); border-color:var(--green); color:#fff; transform:rotate(45deg);
+}
+.faq-a {
+  max-height:0; overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.3s ease;
+  font-size:0.92em; color:#4B5563; line-height:1.8;
+}
+.faq-item.open .faq-a { max-height:300px; padding:0 22px 20px; }
+
+/* ══ CONTACT ══ */
+.contact-section { padding:80px 6%; background:var(--dark); }
 .contact-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
+  max-width:1000px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;
 }
-.contact-info { color: #D1D5DB; }
-.contact-info .section-label { color: #86efac; }
-.contact-info .section-title { color: #fff; margin-bottom:16px; text-align:left; }
-.contact-info p { font-size:0.95em; color:#9CA3AF; margin-bottom:30px; }
+.contact-info { color:#D1D5DB; }
+.contact-info .section-label { color:#86efac; }
+.contact-info .section-title { color:#fff; margin-bottom:16px; text-align:left; }
+.contact-info > p { font-size:0.95em; color:#9CA3AF; margin-bottom:30px; }
 .contact-detail {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
-  font-size: 0.95em;
-  color: #D1D5DB;
+  display:flex; align-items:center; gap:14px;
+  margin-bottom:18px; font-size:0.95em; color:#D1D5DB;
 }
 .contact-detail .icon {
-  width: 42px; height: 42px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 8px;
-  display: flex; align-items:center; justify-content:center;
-  font-size:1.1em;
-  color: var(--green);
-  flex-shrink: 0;
+  width:42px; height:42px; background:rgba(255,255,255,0.06);
+  border-radius:8px; display:flex; align-items:center; justify-content:center;
+  font-size:1.1em; color:var(--green); flex-shrink:0;
 }
-
-/* Form card */
 .form-card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 36px 32px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+  background:#fff; border-radius:14px; padding:36px 32px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.25);
 }
-.form-card h3 {
-  font-size: 1.2em;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 22px;
-}
+.form-card h3 { font-size:1.2em; font-weight:700; color:var(--dark); margin-bottom:22px; }
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .form-group { display:flex; flex-direction:column; margin-bottom:14px; }
-.form-group label {
-  font-size: 0.8em;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 5px;
-  letter-spacing: 0.02em;
-}
+.form-group label { font-size:0.8em; font-weight:600; color:#374151; margin-bottom:5px; }
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 7px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.9em;
-  color: var(--dark);
-  background: #fff;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  outline: none;
+  width:100%; padding:11px 14px;
+  border:1.5px solid var(--border); border-radius:7px;
+  font-family:'Poppins',sans-serif; font-size:0.9em; color:var(--dark);
+  background:#fff; outline:none;
+  transition:border-color 0.2s, box-shadow 0.2s;
 }
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+  border-color:var(--green); box-shadow:0 0 0 3px rgba(34,197,94,0.12);
 }
 .form-group textarea { resize:vertical; min-height:100px; }
 .form-submit {
-  width: 100%;
-  padding: 13px;
-  background: var(--green);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  margin-top: 4px;
+  width:100%; padding:13px; background:var(--green); color:#fff;
+  border:none; border-radius:8px; font-family:'Poppins',sans-serif;
+  font-size:0.95em; font-weight:600; cursor:pointer; margin-top:4px;
+  transition:background 0.2s, transform 0.15s;
 }
-.form-submit:hover { background: var(--green-d); transform:translateY(-1px); }
+.form-submit:hover { background:var(--green-d); transform:translateY(-1px); }
 
-/* ══════════════════════════
-   FOOTER
-══════════════════════════ */
+/* ══ FOOTER ══ */
 footer {
-  background: #0a0f1a;
-  color: #6B7280;
-  text-align: center;
-  padding: 22px 6%;
-  font-size: 0.85em;
+  background:#0a0f1a; color:#6B7280;
+  text-align:center; padding:22px 6%; font-size:0.85em;
 }
-footer a { color: var(--green); }
-footer a:hover { text-decoration: underline; }
+footer a { color:var(--green); }
+footer a:hover { text-decoration:underline; }
 
-/* ══════════════════════════
-   RESPONSIVE
-══════════════════════════ */
-@media (max-width: 768px) {
-  nav, .header-cta { display: none; }
-  .hamburger { display: flex; }
-
-  .contact-inner { grid-template-columns: 1fr; gap: 36px; }
-  .form-row { grid-template-columns: 1fr; }
-  .form-card { padding: 26px 20px; }
-  .contact-info .section-title { text-align: center; }
-  .contact-info p { text-align: center; }
-  .contact-detail { justify-content: center; }
-
-  .hero-btns .btn { width: 100%; justify-content: center; }
+/* ══ RESPONSIVE ══ */
+@media (max-width:768px) {
+  nav, .header-cta { display:none; }
+  .hamburger { display:flex; }
+  .about-inner { grid-template-columns:1fr; gap:36px; }
+  .about-image-wrap img { height:280px; }
+  .about-text .section-title { text-align:center; }
+  .contact-inner { grid-template-columns:1fr; gap:36px; }
+  .form-row { grid-template-columns:1fr; }
+  .form-card { padding:26px 20px; }
+  .contact-info .section-title { text-align:center; }
+  .contact-info > p { text-align:center; }
+  .contact-detail { justify-content:center; }
+  .hero-btns .btn { width:100%; justify-content:center; }
 }
-
-@media (max-width: 480px) {
-  .why-grid { grid-template-columns: 1fr 1fr; }
-  header { padding: 0 4%; }
+@media (max-width:480px) {
+  .why-grid { grid-template-columns:1fr 1fr; }
+  .about-stats { grid-template-columns:1fr 1fr; }
+  header { padding:0 4%; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════ HEADER ═══════ -->
+<!-- HEADER -->
 <header>
   <div class="logo">Lothian<span>Assembly</span></div>
-
   <nav>
     <ul>
       <li><a href="#why">Why Us</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#faq">FAQs</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-
   <div class="header-cta">
     <a href="tel:07716632602" class="btn btn-outline"><i class="fas fa-phone"></i> Call</a>
     <a href="https://wa.me/447716632602" class="btn btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
-
   <button class="hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<!-- ═══════ MOBILE MENU ═══════ -->
+<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <ul>
     <li><a href="#why"      class="nav-link">Why Us</a></li>
+    <li><a href="#about"    class="nav-link">About</a></li>
     <li><a href="#services" class="nav-link">Services</a></li>
     <li><a href="#gallery"  class="nav-link">Gallery</a></li>
+    <li><a href="#faq"      class="nav-link">FAQs</a></li>
     <li><a href="#contact"  class="nav-link">Contact</a></li>
   </ul>
   <div class="mobile-cta">
-    <a href="tel:07716632602"           class="btn btn-outline"><i class="fas fa-phone"></i> Call Now</a>
+    <a href="tel:07716632602"            class="btn btn-outline"><i class="fas fa-phone"></i> Call Now</a>
     <a href="https://wa.me/447716632602" class="btn btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
   </div>
 </div>
 
-<!-- ═══════ HERO ═══════ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
     <div class="hero-badge">Edinburgh & The Lothians</div>
     <h1>Furniture Assembly<br><span>Done Right.</span></h1>
     <p>Flat pack builds, IKEA wardrobes, silicone resealing and handyman jobs — fast, reliable and priced fairly.</p>
     <div class="hero-btns">
-      <a href="#contact"                class="btn btn-green"><i class="fas fa-envelope"></i> Get a Free Quote</a>
+      <a href="#contact"                 class="btn btn-green"><i class="fas fa-envelope"></i> Get a Free Quote</a>
       <a href="https://wa.me/447716632602" class="btn btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
   </div>
 </section>
 
-<!-- ═══════ WHY CHOOSE ═══════ -->
+<!-- WHY CHOOSE -->
 <section class="why" id="why">
-  <p class="section-label">Why choose us</p>
-  <h2 class="section-title">The Lothian Assembly difference</h2>
+  <p class="section-label reveal">Why choose us</p>
+  <h2 class="section-title reveal delay-1">The Lothian Assembly difference</h2>
   <div class="why-grid">
-    <div class="why-item">
-      <i class="fas fa-clock"></i>
-      <h4>Reliable & On Time</h4>
+    <div class="why-item reveal delay-1"><i class="fas fa-clock"></i><h4>Reliable & On Time</h4></div>
+    <div class="why-item reveal delay-2"><i class="fas fa-pound-sign"></i><h4>Transparent Pricing</h4></div>
+    <div class="why-item reveal delay-3"><i class="fas fa-star"></i><h4>IKEA Specialists</h4></div>
+    <div class="why-item reveal delay-4"><i class="fas fa-map-marker-alt"></i><h4>Local Edinburgh Service</h4></div>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-image-wrap reveal-left">
+      <!-- 👇 You can add a photo of yourself/team here: images/about.jpg -->
+      <img src="images/about.jpg" alt="Lothian Assembly team" onerror="this.src=''; this.style.background='#374151'; this.style.height='420px';">
+      <div class="about-badge">⭐ Trusted Edinburgh Service</div>
     </div>
-    <div class="why-item">
-      <i class="fas fa-pound-sign"></i>
-      <h4>Transparent Pricing</h4>
-    </div>
-    <div class="why-item">
-      <i class="fas fa-star"></i>
-      <h4>IKEA Specialists</h4>
-    </div>
-    <div class="why-item">
-      <i class="fas fa-map-marker-alt"></i>
-      <h4>Local Edinburgh Service</h4>
+    <div class="about-text reveal-right">
+      <p class="section-label">About us</p>
+      <h2 class="section-title">Local, reliable & proud of our work</h2>
+      <p>Lothian Assembly is an Edinburgh-based furniture assembly and handyman service. We take the stress out of flat pack furniture — from IKEA wardrobes and beds to office desks and shelving units, we handle it all quickly and professionally.</p>
+      <p>We also specialise in bathroom and kitchen silicone resealing, giving tired joints a fresh, clean finish. Every job — big or small — gets the same attention to detail and care.</p>
+      <p>Based in Edinburgh and serving all of The Lothians, we're your local, dependable team for getting things done properly.</p>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Jobs Completed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5★</div>
+          <div class="stat-label">Customer Rating</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Same</div>
+          <div class="stat-label">Day Availability</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Satisfaction Guarantee</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ SERVICES ═══════ -->
+<!-- SERVICES -->
 <section class="services" id="services">
-  <p class="section-label">What we do</p>
-  <h2 class="section-title">Our Services</h2>
+  <p class="section-label reveal">What we do</p>
+  <h2 class="section-title reveal delay-1">Our Services</h2>
   <div class="cards">
-
-    <div class="card">
+    <div class="card reveal delay-1">
       <div class="card-photo-wrap">
         <img src="images/service-flatpack.jpg" alt="Flat Pack Assembly" onerror="this.style.display='none'">
       </div>
@@ -515,8 +460,7 @@ footer a:hover { text-decoration: underline; }
         <p>Wardrobes, beds, desks, office furniture, TV units and shelving — all major brands assembled professionally.</p>
       </div>
     </div>
-
-    <div class="card">
+    <div class="card reveal delay-2">
       <div class="card-photo-wrap">
         <img src="images/service-silicone.jpg" alt="Silicone Resealing" onerror="this.style.display='none'">
       </div>
@@ -526,8 +470,7 @@ footer a:hover { text-decoration: underline; }
         <p>Mouldy sealant removed and replaced with a clean, professional finish on baths, showers and worktops.</p>
       </div>
     </div>
-
-    <div class="card">
+    <div class="card reveal delay-3">
       <div class="card-photo-wrap">
         <img src="images/service-handyman.jpg" alt="Handyman Services" onerror="this.style.display='none'">
       </div>
@@ -537,92 +480,145 @@ footer a:hover { text-decoration: underline; }
         <p>Shelving installation, minor repairs and small home improvement jobs across Edinburgh.</p>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════ GALLERY ═══════ -->
+<!-- GALLERY -->
 <section class="gallery" id="gallery">
-  <p class="section-label">Portfolio</p>
-  <h2 class="section-title">Our Work</h2>
+  <p class="section-label reveal">Portfolio</p>
+  <h2 class="section-title reveal delay-1">Our Work</h2>
   <div class="gallery-grid">
-    <img src="images/gallery1.jpg" alt="Completed job 1">
-    <img src="images/gallery2.jpg" alt="Completed job 2">
-    <img src="images/gallery3.jpg" alt="Completed job 3">
-    <img src="images/gallery4.jpg" alt="Completed job 4">
-    <img src="images/gallery5.jpg" alt="Completed job 5">
-    <img src="images/gallery6.jpg" alt="Completed job 6">
-    <img src="images/gallery7.jpg" alt="Completed job 7">
-    <img src="images/gallery8.jpg" alt="Completed job 8">
-    <img src="images/gallery9.jpg" alt="Completed job 9">
-    <img src="images/gallery10.jpg" alt="Completed job 10">
-    <img src="images/gallery11.jpg" alt="Completed job 11">
-    <img src="images/gallery12.jpg" alt="Completed job 12">
-    <img src="images/gallery13.jpg" alt="Completed job 13">
-    <img src="images/gallery14.jpg" alt="Completed job 14">
-    <img src="images/gallery15.jpg" alt="Completed job 15">
-    <img src="images/gallery16.jpg" alt="Completed job 16">
-    <img src="images/gallery17.jpg" alt="Completed job 17">
-    <img src="images/gallery18.jpg" alt="Completed job 18">
-    <img src="images/gallery19.jpg" alt="Completed job 19">
-    <img src="images/gallery20.jpg" alt="Completed job 20">
-    <img src="images/gallery21.jpg" alt="Completed job 21">
-    <img src="images/gallery22.jpg" alt="Completed job 22">
-    <img src="images/gallery23.jpg" alt="Completed job 23">
-    <img src="images/gallery24.jpg" alt="Completed job 24">
-    <img src="images/gallery25.jpg" alt="Completed job 25">
-    <img src="images/gallery26.jpg" alt="Completed job 26">
-    <img src="images/gallery27.jpg" alt="Completed job 27">
-    <img src="images/gallery28.jpg" alt="Completed job 28">
-    <img src="images/gallery29.jpg" alt="Completed job 29">
-    <img src="images/gallery30.jpg" alt="Completed job 30">
-    <img src="images/gallery31.jpg" alt="Completed job 31">
+    <img class="reveal delay-1" src="images/gallery1.jpg"  alt="Job 1">
+    <img class="reveal delay-2" src="images/gallery2.jpg"  alt="Job 2">
+    <img class="reveal delay-3" src="images/gallery3.jpg"  alt="Job 3">
+    <img class="reveal delay-1" src="images/gallery4.jpg"  alt="Job 4">
+    <img class="reveal delay-2" src="images/gallery5.jpg"  alt="Job 5">
+    <img class="reveal delay-3" src="images/gallery6.jpg"  alt="Job 6">
+    <img class="reveal delay-1" src="images/gallery7.jpg"  alt="Job 7">
+    <img class="reveal delay-2" src="images/gallery8.jpg"  alt="Job 8">
+    <img class="reveal delay-3" src="images/gallery9.jpg"  alt="Job 9">
+    <img class="reveal delay-1" src="images/gallery10.jpg" alt="Job 10">
+    <img class="reveal delay-2" src="images/gallery11.jpg" alt="Job 11">
+    <img class="reveal delay-3" src="images/gallery12.jpg" alt="Job 12">
+    <img class="reveal delay-1" src="images/gallery13.jpg" alt="Job 13">
+    <img class="reveal delay-2" src="images/gallery14.jpg" alt="Job 14">
+    <img class="reveal delay-3" src="images/gallery15.jpg" alt="Job 15">
+    <img class="reveal delay-1" src="images/gallery16.jpg" alt="Job 16">
+    <img class="reveal delay-2" src="images/gallery17.jpg" alt="Job 17">
+    <img class="reveal delay-3" src="images/gallery18.jpg" alt="Job 18">
+    <img class="reveal delay-1" src="images/gallery19.jpg" alt="Job 19">
+    <img class="reveal delay-2" src="images/gallery20.jpg" alt="Job 20">
+    <img class="reveal delay-3" src="images/gallery21.jpg" alt="Job 21">
+    <img class="reveal delay-1" src="images/gallery22.jpg" alt="Job 22">
+    <img class="reveal delay-2" src="images/gallery23.jpg" alt="Job 23">
+    <img class="reveal delay-3" src="images/gallery24.jpg" alt="Job 24">
+    <img class="reveal delay-1" src="images/gallery25.jpg" alt="Job 25">
+    <img class="reveal delay-2" src="images/gallery26.jpg" alt="Job 26">
+    <img class="reveal delay-3" src="images/gallery27.jpg" alt="Job 27">
+    <img class="reveal delay-1" src="images/gallery28.jpg" alt="Job 28">
+    <img class="reveal delay-2" src="images/gallery29.jpg" alt="Job 29">
+    <img class="reveal delay-3" src="images/gallery30.jpg" alt="Job 30">
+    <img class="reveal delay-1" src="images/gallery31.jpg" alt="Job 31">
   </div>
 </section>
 
-<!-- ═══════ CONTACT ═══════ -->
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <p class="section-label reveal">Got questions?</p>
+    <h2 class="section-title reveal delay-1">Frequently Asked Questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item reveal delay-1">
+        <button class="faq-q">
+          What areas do you cover?
+          <span class="icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a">We cover Edinburgh and all of The Lothians, including East Lothian, West Lothian and Midlothian. Not sure if we cover your area? Just give us a call or WhatsApp us and we'll let you know.</div>
+      </div>
+
+      <div class="faq-item reveal delay-2">
+        <button class="faq-q">
+          How much does furniture assembly cost?
+          <span class="icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a">Pricing depends on the size and complexity of the job. We offer transparent, competitive rates with no hidden fees. Get in touch with a quick description of the job and we'll give you a free, no-obligation quote.</div>
+      </div>
+
+      <div class="faq-item reveal delay-3">
+        <button class="faq-q">
+          Do you assemble all brands, or just IKEA?
+          <span class="icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a">We assemble furniture from all major brands — IKEA, Argos, Next, Wayfair, Dunelm, John Lewis and more. If it comes in a flat pack box, we can build it.</div>
+      </div>
+
+      <div class="faq-item reveal delay-1">
+        <button class="faq-q">
+          How quickly can you come out?
+          <span class="icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a">We often have same-day or next-day availability. Get in touch via WhatsApp or phone for the fastest response, and we'll find a time that works for you.</div>
+      </div>
+
+      <div class="faq-item reveal delay-2">
+        <button class="faq-q">
+          What is silicone resealing and do I need it?
+          <span class="icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a">Silicone resealing is the process of removing old, mouldy or cracked sealant around your bath, shower, sink or kitchen worktop and replacing it with a fresh, clean seal. If your sealant looks black, cracked or peeling, it's time to reseal — it also helps prevent water damage.</div>
+      </div>
+
+      <div class="faq-item reveal delay-3">
+        <button class="faq-q">
+          Do I need to be home during the job?
+          <span class="icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a">Yes, we do ask that someone is present at the property during the job. This lets us ask any questions if needed and means you can check everything over before we leave.</div>
+      </div>
+
+      <div class="faq-item reveal delay-1">
+        <button class="faq-q">
+          What payment methods do you accept?
+          <span class="icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a">We accept cash and bank transfer. Payment is due on completion of the job once you're happy with the work.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="contact-inner">
-
-    <div class="contact-info">
+    <div class="contact-info reveal-left">
       <p class="section-label">Get in touch</p>
       <h2 class="section-title">Let's get your job booked</h2>
       <p>Fill in the form and we'll get back to you quickly with a price. No obligation.</p>
-
       <div class="contact-detail">
         <div class="icon"><i class="fas fa-phone"></i></div>
-        <div>
-          <strong style="color:#fff;display:block;">Call us</strong>
-          07716 632602
-        </div>
+        <div><strong style="color:#fff;display:block;">Call us</strong>07716 632602</div>
       </div>
       <div class="contact-detail">
         <div class="icon"><i class="fab fa-whatsapp"></i></div>
-        <div>
-          <strong style="color:#fff;display:block;">WhatsApp</strong>
-          <a href="https://wa.me/447716632602" style="color:#86efac;">Message us directly</a>
-        </div>
+        <div><strong style="color:#fff;display:block;">WhatsApp</strong>
+          <a href="https://wa.me/447716632602" style="color:#86efac;">Message us directly</a></div>
       </div>
       <div class="contact-detail">
         <div class="icon"><i class="fas fa-envelope"></i></div>
-        <div>
-          <strong style="color:#fff;display:block;">Email</strong>
-          <a href="mailto:Lothian.assembly@hotmail.com" style="color:#86efac;">Lothian.assembly@hotmail.com</a>
-        </div>
+        <div><strong style="color:#fff;display:block;">Email</strong>
+          <a href="mailto:Lothian.assembly@hotmail.com" style="color:#86efac;">Lothian.assembly@hotmail.com</a></div>
       </div>
       <div class="contact-detail">
         <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-        <div>
-          <strong style="color:#fff;display:block;">Area</strong>
-          Edinburgh & The Lothians
-        </div>
+        <div><strong style="color:#fff;display:block;">Area</strong>Edinburgh & The Lothians</div>
       </div>
     </div>
 
-    <div class="form-card">
+    <div class="form-card reveal-right">
       <h3>Get a Free Quote</h3>
       <form action="https://formspree.io/f/mnjglrob" method="POST">
-
         <div class="form-row">
           <div class="form-group">
             <label for="name">Your Name</label>
@@ -633,12 +629,10 @@ footer a:hover { text-decoration: underline; }
             <input type="tel" id="phone" name="phone" placeholder="07700 000000" required>
           </div>
         </div>
-
         <div class="form-group">
           <label for="email">Email Address</label>
           <input type="email" id="email" name="email" placeholder="you@example.com" required>
         </div>
-
         <div class="form-group">
           <label for="service">Service Needed</label>
           <select id="service" name="service">
@@ -649,54 +643,62 @@ footer a:hover { text-decoration: underline; }
             <option>Other / Not Sure</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="message">Tell us about the job</label>
           <textarea id="message" name="message" placeholder="e.g. IKEA PAX wardrobe, 2 doors — Edinburgh EH3"></textarea>
         </div>
-
-        <button type="submit" class="form-submit">
-          <i class="fas fa-paper-plane"></i> Send Message
-        </button>
+        <button type="submit" class="form-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
       </form>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════ FOOTER ═══════ -->
+<!-- FOOTER -->
 <footer>
   &copy; 2026 Lothian Assembly &nbsp;|&nbsp;
   <a href="mailto:Lothian.assembly@hotmail.com">Lothian.assembly@hotmail.com</a>
 </footer>
 
-<!-- ═══════ JS — HAMBURGER + NAV CLOSE ═══════ -->
 <script>
-  const hamburger   = document.getElementById('hamburger');
-  const mobileMenu  = document.getElementById('mobileMenu');
-  const navLinks    = document.querySelectorAll('.nav-link');
+/* ── HAMBURGER ── */
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const navLinks   = document.querySelectorAll('.nav-link');
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-  });
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+navLinks.forEach(l => l.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}));
+document.addEventListener('click', e => {
+  if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+});
 
-  // close menu when any nav link is tapped
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-    });
-  });
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
 
-  // close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-    }
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
+  .forEach(el => observer.observe(el));
+
+/* ── FAQ ACCORDION ── */
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    // open clicked if it was closed
+    if (!isOpen) item.classList.add('open');
   });
+});
 </script>
-
 </body>
 </html>
